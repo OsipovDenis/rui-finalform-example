@@ -1,4 +1,6 @@
 import React from 'react'
+import MyForm from './ui/MyForm'
 import {render} from 'react-dom'
+import {ApplyTheme} from 'rambler-ui/theme'
 
-render(<div>Hello world!</div>, document.querySelector('.app'))
+render(<ApplyTheme><MyForm /></ApplyTheme>, document.querySelector('.app'))
