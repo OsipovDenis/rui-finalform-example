@@ -25,8 +25,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'App',
-      filename: './src/index.html',
-      inject: 'body'
+      filename: './src/index.html'
     })
   ]
 }

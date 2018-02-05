@@ -5,7 +5,7 @@ import Button from 'rambler-ui/Button'
 
 const throttling = (ms = 2000) => new Promise(resolve => {setTimeout(resolve, ms)})
 
-const simplestEmailReaxp = /\w@\w/
+const simplestEmailRegExp = /\w@\w/
 
 const validate = values => {
   const errors = {}
@@ -27,7 +27,7 @@ export default class MyForm extends Component {
   }
 
   onSubmit = async values => {
-    if (!simplestEmailReaxp.test(values.email))
+    if (!simplestEmailRegExp.test(values.email))
       return {email: 'Not valid e-mail'}
 
     this.setState({loading: true})
@@ -43,20 +43,22 @@ export default class MyForm extends Component {
         validate={validate}
         render={({handleSubmit, pristine, invalid, dirtySinceLastSubmit, submitFailed, ...other}) => {
           const disabled = submitFailed ? !dirtySinceLastSubmit : (pristine || invalid)
-          return (<form onSubmit={handleSubmit} style={{width: '200px'}}>
-            <Field disabled={loading} name="email" component={RuiInput} placeholder="E-mail" />
-            <Field disabled={loading} name="name" component={RuiInput} placeholder="Name" />
-            <Field disabled={loading} name="surname" component={RuiInput} placeholder="Surname" />
-            <Field disabled={loading} name="password" component={RuiInput} placeholder="Password" />
-            <Button
-              loading={this.state.loading}
-              type="primary"
-              buttonType="submit"
-              rounded
-              disabled={disabled} >
-              Submit
-            </Button>
-          </form>)
+          return (
+            <form onSubmit={handleSubmit} style={{width: '200px'}}>
+              <Field disabled={loading} name="email" component={RuiInput} placeholder="E-mail" />
+              <Field disabled={loading} name="name" component={RuiInput} placeholder="Name" />
+              <Field disabled={loading} name="surname" component={RuiInput} placeholder="Surname" />
+              <Field disabled={loading} name="password" component={RuiInput} placeholder="Password" />
+              <Button
+                loading={this.state.loading}
+                type="primary"
+                buttonType="submit"
+                rounded
+                disabled={disabled} >
+                Submit
+              </Button>
+            </form>
+          )
         }} />
     )
   }
